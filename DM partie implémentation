@@ -15,24 +15,14 @@ def compute_bound(B):
         v = ppcm(v,i)
     return v
 
-def tronc(M):
-    x = M
-    T = []
-    while x > 1:
-        T.append(x)
-        x = floor(x>>1)
-    T.append(x)
-    T.reverse()
-    return T
-
-def calcul_x(x_1, M, N):
-    d = dict([("1", x_1)])
+def calcul_x(x1, M, N):
+    d = dict([("1", x1)])
     M_2 = Integer(M).digits(base=2) 
     M_2.pop()
     M_2.reverse()
     a = 1
     d[str(2*a)] = (2*d[str(a)]**2 - 1)%N
-    for i in n_dec:
+    for i in M_2:
         if i == 0:
             d[str(a*2)] = (2*d[str(a)]**2 - 1)%N 
             d[str(a*2+1)] = (2*d[str(a)]*d[str(a+1)] - x1)%N 
@@ -42,7 +32,7 @@ def calcul_x(x_1, M, N):
             d[str((a+1)*2)] = (2*d[str(a+1)]**2 - 1)%N          
             a = a*2+1
     return d[str(M)]
-
+    
 def Algorithme1(B,N):
     d = N
     M = compute_bound(B)
